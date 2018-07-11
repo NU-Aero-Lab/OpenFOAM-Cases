@@ -1,0 +1,174 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       latestTime;
+//startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+//stopAt          writeNow;
+
+endTime         1000.0;
+
+deltaT          1;
+
+writeControl    timeStep;
+writeInterval   50;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression uncompressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+// ************************************************************************* //
+
+functions
+{
+
+///////////////////////////////////////////////////////////////////////////
+
+minmaxdomain
+{
+	type fieldMinMax;
+	//type banana;
+
+	functionObjectLibs ("libfieldFunctionObjects.so");
+
+	enabled true;
+
+	mode component;
+
+	writeControl timeStep;
+	writeInterval 1;
+
+	log true;
+
+	fields (p U k omega nut);
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////
+
+forces_object
+{
+	type forces;
+	functionObjectLibs ("libforces.so");
+
+        enabled         true;
+        log         yes;
+
+	//outputControl outputTime;
+	writeControl   timeStep;
+	writeInterval  1;
+
+	//// Patches to sample
+	patches ("ahmed");
+
+	//// Name of fields
+	pName p;
+	Uname U;
+
+	//// Density
+	rho rhoInf;
+	rhoInf 1.225;
+
+
+	//// Centre of rotation
+	CofR (0 0 0);
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////
+
+forcesCoe_object
+{
+    patches ("ahmed");
+
+    magUInf     30;
+    lRef        0.288;
+    Aref        0.115;
+
+    rhoInf		1.225;
+    rho	rhoInf;
+
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+
+    CofR        (0 0 0);
+    pitchAxis   (0 1 0);
+
+    #includeEtc "caseDicts/postProcessing/forces/forceCoeffs.cfg"
+
+    log         yes;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////
+
+yplus
+{
+    type                yPlus;
+    functionObjectLibs  ("libutilityFunctionObjects.so");
+
+    enabled true;
+
+    writeControl outputTime;
+    //writeControl timeStep;
+    //writeInterval 1;
+
+    //log true;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////
+/*
+robject
+{
+    type                writeObjects;
+    functionObjectLibs  ("libutilityFunctionObjects.so");
+
+    enabled true;
+
+    objects (yPlus);
+
+    exclusiveWriting	true;
+
+    outputControl outputTime;
+    //outputControl timeStep;
+    //outputInterval 50;
+
+    log true;
+}
+*/
+///////////////////////////////////////////////////////////////////////////
+
+};

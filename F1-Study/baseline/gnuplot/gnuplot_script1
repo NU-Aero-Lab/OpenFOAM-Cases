@@ -1,0 +1,22 @@
+set terminal qt 0
+
+set xlabel 'x vel'
+set xlabel 'height'
+
+plot \
+	'postProcessing/sample/500/x-3_U.xy' u 4:3   w l title 'x-3', \
+	'postProcessing/sample/500/x-23_U.xy' u 4:3  w l title 'x-23', \
+	'postProcessing/sample/500/x-43_U.xy' u 4:3  w l title 'x-43', \
+	'postProcessing/sample/500/x-63_U.xy' u 4:3  w l title 'x-63', \
+	'postProcessing/sample/500/x-83_U.xy' u 4:3  w l title 'x-83', \
+	'postProcessing/sample/500/x-103_U.xy' u 4:3 w l title 'x-103', \
+	'postProcessing/sample/500/x-123_U.xy' u 4:3 w l title 'x-123', \
+	'postProcessing/sample/500/x-143_U.xy' u 4:3 w l title 'x-143', \
+	'postProcessing/sample/500/x-163_U.xy' u 4:3 w l title 'x-163', \
+	'postProcessing/sample/500/x-183_U.xy' u 4:3 w l title 'x-183', \
+	'postProcessing/sample/500/x-203_U.xy' u 4:3 w l title 'x-203', \
+	'postProcessing/sample/500/x-223_U.xy' u 4:3 w l title 'x-223', \
+	'postProcessing/sample/500/x-243_U.xy' u 4:3 w l title 'x-243', \
+
+pause -1
+#    EOF

@@ -1,0 +1,12 @@
+set terminal qt 0
+
+set xlabel 'x vel'
+set xlabel 'height'
+
+plot \
+	'postProcessing/sample/500/x-123_U.xy' u 4:3   w l title 'CFD x-123', \
+	'Exp/x-123.txt' u ($4*1):($3*0.001)  w l title 'EXP x-123', \
+
+
+pause -1
+#    EOF
