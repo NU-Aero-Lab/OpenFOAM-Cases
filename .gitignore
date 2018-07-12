@@ -1,7 +1,7 @@
-*.stl
-
-*.obj
-
 F1-Study/baseline/constant/polyMesh/
+F1-Study/baseline/constant/extendedFeatureEdgeMesh/
+F1-Study/baseline/dynamicCode/
 
+*.stl
 *.eMesh
+*.obj
