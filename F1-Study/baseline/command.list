@@ -7,7 +7,7 @@ surfaceFeatureExtract -dict system/surfaceFeatureExtractDict
 
 #To generate the mesh and check mesh quality. In serial:
 blockMesh
-snappyHexMesh -dict system/snappyHexMeshDict_coarse_V1 -overwrite
+snappyHexMesh -dict system/snappyHexMeshDict -overwrite
 checkMesh
 
 #Translate domain

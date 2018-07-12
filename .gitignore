@@ -1,1 +1,7 @@
 *.stl
+
+*.obj
+
+F1-Study/baseline/constant/polyMesh/
+
+*.eMesh
