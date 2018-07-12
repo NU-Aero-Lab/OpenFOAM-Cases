@@ -68,7 +68,6 @@ castellatedMeshControls
     );
 
     // Surface based refinement
-
     refinementSurfaces
     {
         vehicle
@@ -122,26 +121,21 @@ castellatedMeshControls
     }
 
     resolveFeatureAngle 30;		//default
-    planarAngle 30;			
+    planarAngle 30;
+    allowFreeStandingZoneFaces true;	
 
     // Region-wise refinement
-
     refinementRegions
     {
-/*
         refinementBox
         {
             mode inside;   
             levels ((1E15 1)); 
         }
-*/
     }
 
     // Mesh selection
-
-    locationInMesh (3 0 0.5)
-
-    allowFreeStandingZoneFaces true;
+    locationInMesh (0 0 2);
 }
 
 // Settings for the snapping.
