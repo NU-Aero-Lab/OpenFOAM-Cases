@@ -1,5 +1,7 @@
 #!/bin/bash
 
+find -maxdepth 1 -name "*.stl" -type f | rename 's/.+ - //g'
+
 com="cat"
 comr="rm -rf"
 
@@ -15,18 +17,18 @@ for filename in *.stl; do
       echo Modifying STL body for $name...
 
       # substitute the first line and exit
-      head -n 1 $filename | sed 's/.*/solid $name/' > $new
+      head -n 1 $filename | sed "s/.*/solid $name/" > $new
       # add the rest of the file (probably quicker than sed)
       tail -n +2 $filename >> $new
       # cut off the last line of the file
       truncate -s $(( $(stat -c "%s" $new) - $(tail -n 1 $new | wc -c) )) $new
       # substitute the last line
-      tail -n 1 $filename | sed 's/.*/endsolid $name/' >> $new
+      tail -n 1 $filename | sed "s/.*/endsolid $name/" >> $new
 
       rm -rf $filename
    fi
 done
 
 com="$com > ASSY.stl"
-com
-echo $comr
+eval $com
+eval $comr
