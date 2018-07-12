@@ -38,11 +38,25 @@ geometry
         }
     }
 
-    refinementBox
+    refinementBox1
     {
         type searchableBox;
-        min (-1.5 -1.125 0);
-        max ( 4.5 1.125 1.25);
+        min (-8 -3 0);
+        max (40 3 5);
+    }
+
+    refinementBox2
+    {
+        type searchableBox;
+        min (-5 -2.5 0);
+        max (40 2.5 3);
+    }
+
+    refinementFloor
+    {
+        type searchableBox;
+        min (-1.2 -1 0);
+        max (4 1 0.275);
     }
 
 };
@@ -52,11 +66,14 @@ castellatedMeshControls
 {
 
     // Refinement parameters
-    maxLocalCells 100000;
-    maxGlobalCells 2000000;
-    minRefinementCells 10;	//0
-    maxLoadUnbalance 0.10;
-    nCellsBetweenLevels 2;	//3
+    maxLocalCells 30000000;
+    maxGlobalCells 60000000;
+    minRefinementCells 1;
+    maxLoadUnbalance 0.2;
+    nCellsBetweenLevels 3;
+    resolveFeatureAngle 30;
+    planarAngle 30;
+    allowFreeStandingZoneFaces false;
 
     // Explicit feature edge refinement
     features
@@ -72,65 +89,71 @@ castellatedMeshControls
     {
         vehicle
         {
-            level (1 1);
+            level (7 9);
 
             regions
             {
                 BW
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 FLOOR
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 FLWh
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 RLWh
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 FRWh
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
                 RRWh
                 {
-                    level (4 4);
+                    level (7 9);
                     patchinfo { type wall; }
                 }
             }
         }
     }
 
-    resolveFeatureAngle 30;		//default
-    planarAngle 30;
-    allowFreeStandingZoneFaces true;	
-
     // Region-wise refinement
     refinementRegions
     {
-        refinementBox
+        refinementBox1
         {
             mode inside;   
-            levels ((1E15 4));
+            levels ((1 2));
+        }
+        refinementBox2
+        {
+            mode inside;   
+            levels ((1 4));
+        }
+        refinementFloor
+        {
+            mode inside;   
+            levels ((1 8));
         }
     }
 
@@ -141,12 +164,12 @@ castellatedMeshControls
 // Settings for the snapping.
 snapControls
 {
-    nSmoothPatch 		    3;
+    nSmoothPatch 		    5;
     tolerance 			    2.0;
-    nSolveIter 			    30;		//300
-    nRelaxIter 			    5;
-    nFeatureSnapIter 		20;		//10;
-    implicitFeatureSnap 	false;
+    nSolveIter 			    150;		
+    nRelaxIter 			    8;
+    nFeatureSnapIter 		20;		
+    implicitFeatureSnap 	true;
     explicitFeatureSnap 	true;
     multiRegionFeatureSnap 	false;
 }
@@ -163,94 +186,83 @@ addLayersControls
     // - overall thickness and finalLayerThickness
     // - overall thickness and expansionRatio
 
-    expansionRatio 		    1.2;
+    expansionRatio 		    1.3;
     finalLayerThickness 	0.3;
-    //firstLayerThickness 	0.1;
-    //thickness 		    0.6;
-    //minThickness 		    0.25;
-    minThickness 		    0.01; 	//0.001
+    minThickness 		    0.1;
+    nGrow 0;
+    nBufferCellsNoExtrude 0;
+    featureAngle 180;	
+    minMedianAxisAngle 75;	
+    nRelaxIter 8;
+    nSmoothSurfaceNormals 2;
+    nSmoothNormals 5;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedialAxisAngle 90;
+    nLayerIter 50;
+    nRelaxedIter 20;
+    additionalReporting true;
 
     layers
     {
         BW
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         FLOOR
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         FW
         {
             nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         RW
         {
             nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         FLWh
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         RLWh
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         FRWh
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
         RRWh
         {
-            nSurfaceLayers          3;
-            //expansionRatio      1.2;
-            //finalLayerThickness 0.5;		//with relative sizes true
-            //minThickness        0.1;		//with relative sizes true
+            nSurfaceLayers          2;
+            expansionRatio          1.3;
+            finalLayerThickness     0.3;
+            minThickness            0.01;
         }
     }
-    nGrow 0;
-    //featureAngle 0;		//no inflation
-    //featureAngle 60;
-    //featureAngle 130;		//default
-    //featureAngle 270;
-    featureAngle 330;		
-    maxFaceThicknessRatio 0.5; 
-    nSmoothSurfaceNormals 1;
-    nSmoothThickness 10;
-    minMedialAxisAngle 130;		//90;
-    minMedianAxisAngle 130;		//90;
-    maxThicknessToMedialRatio 0.3;     
-    nSmoothNormals 10;		//3;
-    //nMedialAxisIter  10;		//this deals with propagation of dislocations in corners
-    //nSmoothDisplacement  90;
-    //detectExtrusionIsland  true;
-    slipFeatureAngle 30;
-    nRelaxIter 10;			//5	//3
-    nBufferCellsNoExtrude 0;
-    nLayerIter 50;
-    nRelaxedIter 20;
-    additionalReporting true;
 }
 
 meshQualityControls
@@ -285,6 +297,6 @@ writeFlags
 
 // Merge tolerance. Is fraction of overall bounding box of initial mesh.
 // Note: the write tolerance needs to be higher than this.
-mergeTolerance 1e-6;
+mergeTolerance 0.000001;
 
 // ************************************************************************* //

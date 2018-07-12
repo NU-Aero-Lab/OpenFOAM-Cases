@@ -15,10 +15,10 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 //- Maximum non-orthogonality allowed. Set to 180 to disable.
-maxNonOrtho 75; 
+maxNonOrtho 70; 
 
 //- Max skewness allowed. Set to <0 to disable.
-maxBoundarySkewness 4;	//original 20
+maxBoundarySkewness 20;
 maxInternalSkewness 4;
 
 //- Max concaveness allowed. Is angle (in degrees) below which concavity
@@ -39,8 +39,7 @@ minVol 1e-13;
 //     <0 = inside out tet,
 //      0 = flat tet
 //      1 = regular tet
-minTetQuality 1e-15;
-//minTetQuality -1e30;		//ok surface mesh
+minTetQuality -1e30;		//ok surface mesh
 //minTetQuality 0;
 //minTetQuality 1;		//ok surface mesh, does not do inflation layer	
 
@@ -49,7 +48,7 @@ minArea -1;
 
 //- Minimum face twist. Set to <-1 to disable. dot product of face normal
 // and face centre triangles normal
-minTwist 0.02;
+minTwist 0.01;
 
 //- Minimum normalised cell determinant. This is the determinant of all
 //  the areas of internal faces. It is a measure of how much of the
