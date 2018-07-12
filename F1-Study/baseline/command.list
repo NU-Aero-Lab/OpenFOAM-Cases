@@ -39,8 +39,6 @@ blockMesh
 decomposePar
 mpirun -np 4 snappyHexMesh -parallel -dict system/snappyHexMeshDict -overwrite 
 mpirun -np 4 checkMesh -parallel 
-
-#To reconstruct the mesh
 reconstructParMesh
 
 #To transfer the desired mesh to constant/polyMesh

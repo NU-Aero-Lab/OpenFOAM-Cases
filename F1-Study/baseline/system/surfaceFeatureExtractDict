@@ -25,7 +25,7 @@ ASSY.stl
         // than includedAngle as features
         // - 0  : selects no edges
         // - 180: selects all edges
-        includedAngle   150;
+        includedAngle   30;
     }
     writeObj    yes;
 }
