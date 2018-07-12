@@ -41,8 +41,8 @@ geometry
     refinementBox
     {
         type searchableBox;
-        min (-1 -0.6 0);
-        max ( 4 0.6 1);
+        min (-1.5 -1.125 0);
+        max ( 4.5 1.125 1.25);
     }
 
 };
@@ -63,7 +63,7 @@ castellatedMeshControls
     (
         {
             file "ASSY.eMesh";
-            level 0; // level 2
+            level 1; // level 2
         }
     );
 
@@ -78,42 +78,42 @@ castellatedMeshControls
             {
                 BW
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 FLOOR
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 FLWh
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 RLWh
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 FRWh
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
                 RRWh
                 {
-                    level (2 2); // (2 4)
+                    level (4 4);
                     patchinfo { type wall; }
                 }
             }
@@ -130,7 +130,7 @@ castellatedMeshControls
         refinementBox
         {
             mode inside;   
-            levels ((1E15 1)); 
+            levels ((1E15 4));
         }
     }
 
@@ -143,7 +143,7 @@ snapControls
 {
     nSmoothPatch 		    3;
     tolerance 			    2.0;
-    nSolveIter 			    300;		//30
+    nSolveIter 			    30;		//300
     nRelaxIter 			    5;
     nFeatureSnapIter 		20;		//10;
     implicitFeatureSnap 	false;
@@ -168,7 +168,7 @@ addLayersControls
     //firstLayerThickness 	0.1;
     //thickness 		    0.6;
     //minThickness 		    0.25;
-    minThickness 		    0.1; 	//0.001
+    minThickness 		    0.01; 	//0.001
 
     layers
     {
