@@ -147,10 +147,10 @@ castellatedMeshControls
 // Settings for the snapping.
 snapControls
 {
-    nSmoothPatch 		3;
-    tolerance 			2.0;
-    nSolveIter 			300;		//30
-    nRelaxIter 			5;
+    nSmoothPatch 		    3;
+    tolerance 			    2.0;
+    nSolveIter 			    300;		//30
+    nRelaxIter 			    5;
     nFeatureSnapIter 		20;		//10;
     implicitFeatureSnap 	false;
     explicitFeatureSnap 	true;

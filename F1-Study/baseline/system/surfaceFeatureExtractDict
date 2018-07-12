@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ab1.stl
+ASSY.stl
 {
     // How to obtain raw features (extractFromFile || extractFromSurface)
     extractionMethod    extractFromSurface;
@@ -27,50 +27,7 @@ ab1.stl
         // - 180: selects all edges
         includedAngle   150;
     }
-
-    // Write options
-
-        // Write features to obj format for postprocessing
-        writeObj                yes;
+    writeObj    yes;
 }
 
-ab2.stl
-{
-    // How to obtain raw features (extractFromFile || extractFromSurface)
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        // Mark edges whose adjacent surface normals are at an angle less
-        // than includedAngle as features
-        // - 0  : selects no edges
-        // - 180: selects all edges
-        includedAngle   150;
-    }
-
-    // Write options
-
-        // Write features to obj format for postprocessing
-        writeObj                yes;
-}
-
-support.stl
-{
-    // How to obtain raw features (extractFromFile || extractFromSurface)
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        // Mark edges whose adjacent surface normals are at an angle less
-        // than includedAngle as features
-        // - 0  : selects no edges
-        // - 180: selects all edges
-        includedAngle   150;
-    }
-
-    // Write options
-
-        // Write features to obj format for postprocessing
-        writeObj                yes;
-}
 // ************************************************************************* //
