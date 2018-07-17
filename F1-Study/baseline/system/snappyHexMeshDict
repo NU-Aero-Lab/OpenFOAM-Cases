@@ -100,17 +100,17 @@ castellatedMeshControls
                 }
                 FLOOR
                 {
-                    level (7 9);
+                    level (7 10);
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (7 9);
+                    level (8 10);
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (7 9);
+                    level (8 10);
                     patchinfo { type wall; }
                 }
                 FLWh
