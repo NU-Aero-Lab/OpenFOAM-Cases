@@ -37,15 +37,11 @@ boundaryField
         //value           uniform 0.1666;
         type            slip;
     }
-    "side.*"
-    {
-        type            symmetry;
-    }
     top
     {
         type            symmetry;
     }
-    ahmed
+    vehicle
     {
         type            kqRWallFunction;
         value           uniform 0.1666;

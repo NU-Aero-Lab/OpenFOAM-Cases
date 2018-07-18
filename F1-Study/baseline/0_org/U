@@ -37,15 +37,11 @@ boundaryField
         //value           uniform (0 0 0);
         type            slip;
     }
-    "side.*"
-    {
-        type            symmetry;
-    }
     top
     {
         type            symmetry;
     }
-    ahmed
+    vehicle
     {
         type            fixedValue;
         value           uniform (0 0 0);

@@ -23,9 +23,9 @@ ymax  10;
 zmin  0;
 zmax  15;
 
-deltax 2;
-deltay 3;
-deltaz 2;
+deltax 1.8;
+deltay 2.75;
+deltaz 1.8;
 
 lx #calc "($xmax) - ($xmin)";
 ly #calc "($ymax) - ($ymin)";

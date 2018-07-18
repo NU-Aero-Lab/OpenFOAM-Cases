@@ -41,18 +41,13 @@ boundaryField
         beta1           0.075;
         value           uniform 10300;
 */
-
 	type            slip;
-    }
-    "side.*"
-    {
-        type            symmetry;
     }
     top
     {
         type            symmetry;
     }
-    ahmed
+    vehicle
     {
         type            omegaWallFunction;
         value           uniform 10300;

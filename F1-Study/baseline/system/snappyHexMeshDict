@@ -18,6 +18,9 @@ castellatedMesh true;
 snap            true;
 addLayers       true;
 
+gminlevel 7;
+gmincurv 9;
+
 geometry
 {
     ASSY.stl
@@ -52,6 +55,13 @@ geometry
         max (40 2.5 3);
     }
 
+    refinementWake
+    {
+        type searchableBox;
+        min (3.5 -1.2 0);
+        max (7 1.2 1.5);
+    }
+
     refinementFloor
     {
         type searchableBox;
@@ -67,7 +77,7 @@ castellatedMeshControls
 
     // Refinement parameters
     maxLocalCells 30000000;
-    maxGlobalCells 60000000;
+    maxGlobalCells 80000000;
     minRefinementCells 1;
     maxLoadUnbalance 0.2;
     nCellsBetweenLevels 3;
@@ -80,7 +90,7 @@ castellatedMeshControls
     (
         {
             file "ASSY.eMesh";
-            level 1; // level 2
+            level 1;
         }
     );
 
@@ -89,48 +99,48 @@ castellatedMeshControls
     {
         vehicle
         {
-            level (7 9);
+            level ($gminlevel $gmincurv);
 
             regions
             {
                 BW
                 {
-                    level (7 9);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
                 FLOOR
                 {
-                    level (7 10);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (8 10);
+                    level (#calc "($gminlevel)+2" $gmincurv);
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (8 10);
+                    level (#calc "($gminlevel)+2" $gmincurv);
                     patchinfo { type wall; }
                 }
                 FLWh
                 {
-                    level (7 9);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
                 RLWh
                 {
-                    level (7 9);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
                 FRWh
                 {
-                    level (7 9);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
                 RRWh
                 {
-                    level (7 9);
+                    level ($gminlevel $gmincurv);
                     patchinfo { type wall; }
                 }
             }
@@ -149,6 +159,11 @@ castellatedMeshControls
         {
             mode inside;   
             levels ((1 4));
+        }
+        refinementWake
+        {
+            mode inside;   
+            levels ((1 8));
         }
         refinementFloor
         {

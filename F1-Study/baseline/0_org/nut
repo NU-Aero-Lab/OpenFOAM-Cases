@@ -39,18 +39,13 @@ boundaryField
         E               9.8;
         value           uniform 0;
 */
-
 	type            slip;
-    }
-    "side.*"
-    {
-        type            symmetry;
     }
     top
     {
         type            symmetry;
     }
-    ahmed
+    vehicle
     {
         type            nutkWallFunction;
         value           uniform 0;

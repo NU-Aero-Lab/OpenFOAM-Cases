@@ -33,15 +33,11 @@ boundaryField
     {
         type            zeroGradient;
     }
-    "side.*"
-    {
-        type            symmetry;
-    }
     top
     {
         type            symmetry;
     }
-    ahmed
+    vehicle
     {
         type            zeroGradient;
     }
