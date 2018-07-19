@@ -19,7 +19,7 @@ snap            true;
 addLayers       true;
 
 gminlevel 7;
-gmincurv 9;
+gmaxlevel 9;
 
 geometry
 {
@@ -81,7 +81,7 @@ castellatedMeshControls
     minRefinementCells 1;
     maxLoadUnbalance 0.2;
     nCellsBetweenLevels 3;
-    resolveFeatureAngle 30;
+    resolveFeatureAngle 25;
     planarAngle 30;
     allowFreeStandingZoneFaces false;
 
@@ -90,7 +90,7 @@ castellatedMeshControls
     (
         {
             file "ASSY.eMesh";
-            level 1;
+            level 5;
         }
     );
 
@@ -99,48 +99,48 @@ castellatedMeshControls
     {
         vehicle
         {
-            level ($gminlevel $gmincurv);
+            level ($gminlevel $gmaxlevel);
 
             regions
             {
                 BW
                 {
-                    level ($gminlevel $gmincurv);
+                    level ($gminlevel $gmaxlevel);
                     patchinfo { type wall; }
                 }
                 FLOOR
                 {
-                    level ($gminlevel $gmincurv);
+                    level (#calc "($gminlevel)+1" $gmaxlevel);
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (#calc "($gminlevel)+2" $gmincurv);
+                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+1");
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (#calc "($gminlevel)+2" $gmincurv);
+                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+1");
                     patchinfo { type wall; }
                 }
                 FLWh
                 {
-                    level ($gminlevel $gmincurv);
+                    level ($gminlevel $gmaxlevel);
                     patchinfo { type wall; }
                 }
                 RLWh
                 {
-                    level ($gminlevel $gmincurv);
+                    level ($gminlevel $gmaxlevel);
                     patchinfo { type wall; }
                 }
                 FRWh
                 {
-                    level ($gminlevel $gmincurv);
+                    level ($gminlevel $gmaxlevel);
                     patchinfo { type wall; }
                 }
                 RRWh
                 {
-                    level ($gminlevel $gmincurv);
+                    level ($gminlevel $gmaxlevel);
                     patchinfo { type wall; }
                 }
             }
