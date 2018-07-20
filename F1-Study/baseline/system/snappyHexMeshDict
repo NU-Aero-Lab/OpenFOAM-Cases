@@ -58,8 +58,8 @@ geometry
     refinementWake
     {
         type searchableBox;
-        min (3.5 -1.2 0);
-        max (7 1.2 1.5);
+        min (-1.5 -1.2 0);
+        max (6.5 1.2 1.5);
     }
 
     refinementFloor
@@ -90,7 +90,7 @@ castellatedMeshControls
     (
         {
             file "ASSY.eMesh";
-            level 5;
+            level 3;
         }
     );
 
@@ -110,17 +110,17 @@ castellatedMeshControls
                 }
                 FLOOR
                 {
-                    level (#calc "($gminlevel)+1" $gmaxlevel);
+                    level (#calc "($gminlevel)+2" #calc "($gmaxlevel)+1");
                     patchinfo { type wall; }
                 }
                 FW
                 {
-                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+1");
+                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+2");
                     patchinfo { type wall; }
                 }
                 RW
                 {
-                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+1");
+                    level (#calc "($gminlevel)+3" #calc "($gmaxlevel)+2");
                     patchinfo { type wall; }
                 }
                 FLWh
@@ -163,12 +163,12 @@ castellatedMeshControls
         refinementWake
         {
             mode inside;   
-            levels ((1 8));
+            levels ((1 7));
         }
         refinementFloor
         {
             mode inside;   
-            levels ((1 8));
+            levels ((1 7));
         }
     }
 
