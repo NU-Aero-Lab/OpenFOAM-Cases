@@ -47,7 +47,7 @@ boundaryField
     {
         type            symmetry;
     }
-    *side.*"
+    "side.*"
     {
         type            symmetry
     }
