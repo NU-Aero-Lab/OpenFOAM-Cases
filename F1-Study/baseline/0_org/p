@@ -31,7 +31,7 @@ boundaryField
     }
     ground
     {
-        type            zeroGradient;
+        type            symmetry;
     }
     top
     {
@@ -39,7 +39,7 @@ boundaryField
     }
     "side.*"
     {
-        type            symmetry
+        type            symmetry;
     }
     BW
     {

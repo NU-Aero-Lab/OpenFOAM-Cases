@@ -41,7 +41,7 @@ boundaryField
         beta1           0.075;
         value           uniform 10300;
 */
-	type            slip;
+	type                symmetry;
     }
     top
     {
@@ -49,7 +49,7 @@ boundaryField
     }
     "side.*"
     {
-        type            symmetry
+        type            symmetry;
     }
     BW
     {
