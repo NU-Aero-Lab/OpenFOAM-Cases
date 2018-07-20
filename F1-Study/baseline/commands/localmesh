@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Do snappyHexMesh
+decomposePar
+mpirun -np 6 snappyHexMesh -parallel -dict system/snappyHexMeshDict -overwrite 
+mpirun -np 6recons   checkMesh -parallel 
+reconstructParMesh -constant
+
+# rename patches
+createPatch -dict system/createPatchDict0
+createPatch -dict system/createPatchDict1
+
+rm -rf constant/polyMesh
+cp -r 2/polyMesh constant
+rm -rf 0 1 2
+cp -r 0_org 0
+
+# Initialise case
+decomposePar -force
+mpirun -np 6 renumberMesh -parallel -overwrite
+mpirun -np 6 potentialFoam -initialiseUBCs -noFunctionObjects -parallel

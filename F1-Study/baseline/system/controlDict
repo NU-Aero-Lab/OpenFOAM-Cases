@@ -109,7 +109,7 @@ forces_object
 
 forcesCoe_object
 {
-    patches ("ahmed");
+    patches ("vehicle");
 
     magUInf     30;
     lRef        0.288;

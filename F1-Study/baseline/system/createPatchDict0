@@ -20,112 +20,47 @@ pointSync false;
 patches
 (
     {
-        // Name of new patch
-        name inlet;
-
-        patchInfo
-        {
-            type patch;
-        }
-
-        // How to construct: either from 'patches' or 'set'
-        constructFrom patches;
-
-        // If constructFrom = patches : names of patches. Wildcards allowed.
-        patches (left);
-
-        // If constructFrom = set : name of faceSet
-        set f0;
+        name inlet;  // Name of new patch
+        patchInfo { type patch; }
+        constructFrom patches;  //or 'set'
+        patches (left); //name of patch to create from
     }
 
     {
-        // Name of new patch
         name outlet;
-
-        patchInfo
-        {
-            type patch;
-        }
-
+        patchInfo { type patch; }
         constructFrom patches;
-
         patches (right);
     }
 
     {
-        // Name of new patch
         name side1;
-
-        patchInfo
-        {
-            type symmetry;
-        }
-
+        patchInfo { type symmetry; }
         constructFrom patches;
-
         patches (bottom);
     }
 
     {
-        // Name of new patch
         name side2;
-
-        patchInfo
-        {
-            type symmetry;
-        }
-
+        patchInfo { type symmetry; }
         constructFrom patches;
-
         patches (top);
     }
 
     {
-        // Name of new patch
         name top1;
-
-        patchInfo
-        {
-            type symmetry;
-        }
-
+        patchInfo { type symmetry; }
         constructFrom patches;
-
         patches (front);
     }
 
     {
-        // Name of new patch
         name ground;
-
-        patchInfo
-        {
-            //type wall;
-            type patch;
-        }
-
+        patchInfo { type symmetry; }
         constructFrom patches;
-
         patches (back);
     }
 
-
-
-/*
-    {
-        // Name of new patch
-        name ahmed;
-
-        patchInfo
-        {
-            type wall;
-        }
-
-        constructFrom patches;
-
-        patches (ahmed);
-    }
-*/
 );
 
 // ************************************************************************* //

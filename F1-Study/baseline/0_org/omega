@@ -47,7 +47,46 @@ boundaryField
     {
         type            symmetry;
     }
-    vehicle
+    *side.*"
+    {
+        type            symmetry
+    }
+    BW
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    FLOOR
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    FLWh
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    FRWh
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    FW
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    RLWh
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    RRWh
+    {
+        type            omegaWallFunction;
+        value           uniform 10300;
+    }
+    RW
     {
         type            omegaWallFunction;
         value           uniform 10300;

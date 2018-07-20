@@ -37,7 +37,39 @@ boundaryField
     {
         type            symmetry;
     }
-    vehicle
+    *side.*"
+    {
+        type            symmetry
+    }
+    BW
+    {
+        type            zeroGradient;
+    }
+    FLOOR
+    {
+        type            zeroGradient;
+    }
+    FLWh
+    {
+        type            zeroGradient;
+    }
+    FRWh
+    {
+        type            zeroGradient;
+    }
+    FW
+    {
+        type            zeroGradient;
+    }
+    RLWh
+    {
+        type            zeroGradient;
+    }
+    RRWh
+    {
+        type            zeroGradient;
+    }
+    RW
     {
         type            zeroGradient;
     }

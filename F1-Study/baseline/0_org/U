@@ -16,20 +16,20 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (30 0 0);
+internalField   uniform (40 0 0);
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform (30 0 0);
+        value           uniform (40 0 0);
     }
     outlet
     {
         type            inletOutlet;
         inletValue      uniform (0 0 0);
-        value           uniform (30 0 0);
+        value           uniform (40 0 0);
     }
     ground
     {
@@ -37,11 +37,50 @@ boundaryField
         //value           uniform (0 0 0);
         type            slip;
     }
+    *side.*"
+    {
+        type            symmetry
+    }
     top
     {
         type            symmetry;
     }
-    vehicle
+    BW
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FLOOR
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FLWh
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FRWh
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FW
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    RLWh
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    RRWh
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    RW
     {
         type            fixedValue;
         value           uniform (0 0 0);
