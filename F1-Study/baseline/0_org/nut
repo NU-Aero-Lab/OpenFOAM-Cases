@@ -51,43 +51,43 @@ boundaryField
     }
     BW
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     FLOOR
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     FLWh
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     FRWh
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     FW
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     RLWh
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     RRWh
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
     RW
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            nutkWallFunction;
+        value           uniform 0;
     }
 }
 

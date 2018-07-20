@@ -57,7 +57,6 @@ mpirun -np 6 potentialFoam -initialiseUBCs -noFunctionObjects -parallel
 mpirun -np 6 simpleFoam -parallel > log.simplefoam | tail -f log.simplefoam 
 
 yPlusRAS -latestTime
-
 Q -latestTime
 wallShearStress -latestTime
 vorticity -latestTime
