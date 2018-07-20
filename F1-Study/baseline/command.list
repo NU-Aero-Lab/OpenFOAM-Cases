@@ -38,7 +38,7 @@ postProcess -func sample -latestTime
 blockMesh
 decomposePar
 mpirun -np 6 snappyHexMesh -parallel -dict system/snappyHexMeshDict -overwrite 
-mpirun -np 6recons   checkMesh -parallel 
+mpirun -np 6 checkMesh -parallel 
 reconstructParMesh -constant
 
 #To transfer the desired mesh to constant/polyMesh
