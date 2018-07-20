@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Run the case
+mpirun -np 6 simpleFoam -parallel > log.simplefoam | tail -f log.simplefoam 
+
+# Extract post pro
+yPlusRAS -latestTime
+Q -latestTime
+wallShearStress -latestTime
+vorticity -latestTime
+postProcess -func sample -latestTime

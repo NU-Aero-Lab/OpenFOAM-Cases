@@ -93,7 +93,7 @@ potentialFlow
     nNonOrthogonalCorrectors 10;
 }
 
-/*
+
 //For SIMPLE
 relaxationFactors
 {
@@ -108,9 +108,9 @@ relaxationFactors
         omega           0.7;
     }
 }
-*/
 
 
+/*
 //For SIMPLEC
 relaxationFactors
 {
@@ -126,5 +126,6 @@ relaxationFactors
         omega           0.7;
     }
 }
+*/
 
 // ************************************************************************* //

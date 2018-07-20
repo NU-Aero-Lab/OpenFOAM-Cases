@@ -52,12 +52,11 @@ rm -rf 0
 cp -r 0_org 0
 
 decomposePar -force
-mpirun -np 4 renumberMesh -parallel -overwrite
-mpirun -np 4 potentialFoam -initialiseUBCs -noFunctionObjects -parallel
-mpirun -np 4 simpleFoam -parallel > log.simplefoam | tail -f log.simplefoam 
+mpirun -np 6 renumberMesh -parallel -overwrite
+mpirun -np 6 potentialFoam -initialiseUBCs -noFunctionObjects -parallel
+mpirun -np 6 simpleFoam -parallel > log.simplefoam | tail -f log.simplefoam 
 
 yPlusRAS -latestTime
-
 Q -latestTime
 wallShearStress -latestTime
 vorticity -latestTime

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#To clean the directory, this is optional
+foamCleanTutorials
+foamCleanPolyMesh
+
+#Extract and convert edges
+surfaceFeatureExtract -dict system/surfaceFeatureExtractDict
+
+#To generate the mesh and check mesh quality
+blockMesh

@@ -39,13 +39,52 @@ boundaryField
         E               9.8;
         value           uniform 0;
 */
-	type            slip;
+	type                symmetry;
     }
     top
     {
         type            symmetry;
     }
-    vehicle
+    "side.*"
+    {
+        type            symmetry;
+    }
+    BW
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    FLOOR
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    FLWh
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    FRWh
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    FW
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    RLWh
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    RRWh
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    RW
     {
         type            nutkWallFunction;
         value           uniform 0;

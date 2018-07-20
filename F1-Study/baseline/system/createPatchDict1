@@ -20,16 +20,9 @@ pointSync false;
 patches
 (
     {
-        // Name of new patch
         name top;
-
-        patchInfo
-        {
-            type symmetry;
-        }
-
+        patchInfo { type symmetry; }
         constructFrom patches;
-
         patches (top1);
     }
 );
