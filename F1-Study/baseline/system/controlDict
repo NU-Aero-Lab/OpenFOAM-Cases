@@ -80,15 +80,15 @@ forces_object
 	type forces;
 	functionObjectLibs ("libforces.so");
 
-        enabled         true;
-        log         yes;
+    enabled     true;
+    log         yes;
 
 	//outputControl outputTime;
 	writeControl   timeStep;
 	writeInterval  1;
 
 	//// Patches to sample
-	patches ("ahmed");
+	patches (BW FLOOR FLWh FRWh FW RLWh RRWh RW);
 
 	//// Name of fields
 	pName p;
@@ -109,11 +109,11 @@ forces_object
 
 forcesCoe_object
 {
-    patches ("vehicle");
+    patches (BW FLOOR FLWh FRWh FW RLWh RRWh RW);
 
-    magUInf     30;
-    lRef        0.288;
-    Aref        0.115;
+    magUInf     40;
+    lRef        3.6;
+    Aref        1.6;
 
     rhoInf		1.225;
     rho	rhoInf;
@@ -172,3 +172,6 @@ robject
 ///////////////////////////////////////////////////////////////////////////
 
 };
+
+
+ 
