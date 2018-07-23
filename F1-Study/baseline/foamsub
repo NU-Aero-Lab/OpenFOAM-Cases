@@ -5,7 +5,7 @@
 #SBATCH --job-name=NM_OF
 #SBATCH --output nm_of-%j.out
 #SBATCH --partition=24hour
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=28
 #SBATCH --exclusive
 #SBATCH --mail-user=nick.d.martin@northumbria.ac.uk
@@ -19,6 +19,9 @@ sed -i "/numberOfSubdomains/c\\numberOfSubdomains    $(($nodes*$cores));" system
 
 # Run the solution (parallel)
 echo "SOLVING..."
+decomposePar -force
+mpirun -np $(($nodes*$cores)) renumberMesh -parallel -overwrite
+mpirun -np $(($nodes*$cores)) potentialFoam -initialiseUBCs -noFunctionObjects -parallel
 mpirun -np $(($nodes*$cores)) simpleFoam -parallel
 
 # Get results
