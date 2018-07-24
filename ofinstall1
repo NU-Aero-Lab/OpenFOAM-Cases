@@ -39,7 +39,6 @@ cd $HOME/OpenFOAM/OpenFOAM-dev
 
 echo "Finished installing OpenFOAM"
 
-exec bash
 
 
 
