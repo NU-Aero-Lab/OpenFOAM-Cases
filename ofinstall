@@ -1,0 +1,46 @@
+!#/bin/bash
+
+apt-get install build-essential flex bison git-core cmake zlib1g-dev libboost-system-dev libboost-thread-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev
+
+apt-get install qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev curl
+
+export QT_SELECT=qt4
+
+if ! [ -d "$HOME/OpenFOAM" ]; then
+  mkdir $HOME/OpenFOAM
+fi
+
+cd $HOME/OpenFOAM
+
+if ! [ -d "$HOME/OpenFOAM/OpenFOAM-dev" ]; then
+  git clone git://github.com/OpenFOAM/OpenFOAM-dev.git
+fi
+
+if ! [ -d "$HOME/OpenFOAM/ThirdParty-dev" ]; then
+  git clone git://github.com/OpenFOAM/ThirdParty-dev.git
+fi
+
+echo "source $HOME/OpenFOAM/OpenFOAM-dev/etc/bashrc" >> $HOME/.bashrc
+
+source $HOME/.bashrc
+
+if [ -z "$WM_PROJECT_DIR" ]; then
+  echo "No such env variable"
+fi
+
+cd $HOME/OpenFOAM/ThirdParty-dev
+
+./Allwmake
+./makeParaView
+wmRefresh
+
+cd $HOME/OpenFOAM/OpenFOAM-dev
+./Allwmake -j
+
+echo "Finished installing OpenFOAM"
+
+exec bash
+
+
+
+
