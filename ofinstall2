@@ -1,0 +1,16 @@
+!#/bin/bash
+
+if [ -z "$WM_PROJECT_DIR" ]; then
+  echo "No such env variable"
+fi
+
+cd $HOME/OpenFOAM/ThirdParty-dev
+
+./Allwmake
+./makeParaView
+wmRefresh
+
+cd $HOME/OpenFOAM/OpenFOAM-dev
+./Allwmake -j
+
+echo "Finished installing OpenFOAM"
