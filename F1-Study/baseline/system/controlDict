@@ -17,7 +17,6 @@ FoamFile
 application     simpleFoam;
 
 startFrom       latestTime;
-//startFrom       startTime;
 
 startTime       0;
 
@@ -29,149 +28,28 @@ endTime         1000.0;
 deltaT          1;
 
 writeControl    timeStep;
-writeInterval   50;
+writeInterval   10;
 
 purgeWrite      0;
 
-writeFormat     ascii;
+writeFormat     binary;
 
-writePrecision  8;
+writePrecision  6;
 
-writeCompression uncompressed;
+writeCompression off;
 
 timeFormat      general;
 
 timePrecision   6;
 
-runTimeModifiable yes;
-
-// ************************************************************************* //
+runTimeModifiable true;
 
 functions
 {
-
-///////////////////////////////////////////////////////////////////////////
-
-minmaxdomain
-{
-	type fieldMinMax;
-	//type banana;
-
-	functionObjectLibs ("libfieldFunctionObjects.so");
-
-	enabled true;
-
-	mode component;
-
-	writeControl timeStep;
-	writeInterval 1;
-
-	log true;
-
-	fields (p U k omega nut);
+    #include "streamLines"
+    #include "cuttingPlane"
+    #include "yPlus"
+    #include "forceCoeffs"
 }
 
-///////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////
-
-forces_object
-{
-	type forces;
-	functionObjectLibs ("libforces.so");
-
-    enabled     true;
-    log         yes;
-
-	//outputControl outputTime;
-	writeControl   timeStep;
-	writeInterval  1;
-
-	//// Patches to sample
-	patches (BW FLOOR FLWh FRWh FW RLWh RRWh RW);
-
-	//// Name of fields
-	pName p;
-	Uname U;
-
-	//// Density
-	rho rhoInf;
-	rhoInf 1.225;
-
-
-	//// Centre of rotation
-	CofR (0 0 0);
-}
-
-///////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////
-
-forcesCoe_object
-{
-    patches (BW FLOOR FLWh FRWh FW RLWh RRWh RW);
-
-    magUInf     40;
-    lRef        3.6;
-    Aref        1.6;
-
-    rhoInf		1.225;
-    rho	rhoInf;
-
-    liftDir     (0 0 1);
-    dragDir     (1 0 0);
-
-    CofR        (0 0 0);
-    pitchAxis   (0 1 0);
-
-    #includeEtc "caseDicts/postProcessing/forces/forceCoeffs.cfg"
-
-    log         yes;
-}
-
-///////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////
-
-yplus
-{
-    type                yPlus;
-    functionObjectLibs  ("libutilityFunctionObjects.so");
-
-    enabled true;
-
-    writeControl outputTime;
-    //writeControl timeStep;
-    //writeInterval 1;
-
-    //log true;
-}
-
-///////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////
-/*
-robject
-{
-    type                writeObjects;
-    functionObjectLibs  ("libutilityFunctionObjects.so");
-
-    enabled true;
-
-    objects (yPlus);
-
-    exclusiveWriting	true;
-
-    outputControl outputTime;
-    //outputControl timeStep;
-    //outputInterval 50;
-
-    log true;
-}
-*/
-///////////////////////////////////////////////////////////////////////////
-
-};
-
-
- 
+// ************************************************************************* //

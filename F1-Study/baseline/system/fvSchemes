@@ -28,21 +28,15 @@ gradSchemes
 divSchemes
 {
     default         none;
-
-    div(phi,U)       bounded Gauss linearUpwind Grad(U);
-    //div(phi,U)       Gauss LUST unlimitedGrad(U);
-    //div(phi,U)       bounded Gauss linear;
-    //div(phi,U)       bounded Gauss upwind;
-
+    div(phi,U)       bounded Gauss linearUpwindV grad(U);
     div(phi,k)       bounded Gauss upwind;
     div(phi,omega)   bounded Gauss upwind;
-
     div((nuEff*dev2(T(grad(U))))) Gauss linear;
 }
 
 laplacianSchemes
 {
-    default         Gauss linear limited 1;
+    default         Gauss linear corrected;
 }
 
 interpolationSchemes
@@ -52,7 +46,16 @@ interpolationSchemes
 
 snGradSchemes
 {
-    default         limited 1;
+    default         corrected;
 }
 
+wallDist
+{
+    method          meshWave;
+}
+
+
+//div(phi,U)       Gauss LUST unlimitedGrad(U);
+//div(phi,U)       bounded Gauss linear;
+//div(phi,U)       bounded Gauss upwind;
 // ************************************************************************* //
