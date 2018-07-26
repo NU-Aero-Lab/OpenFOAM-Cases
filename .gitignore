@@ -18,3 +18,5 @@
 *.obj
 
 F1-Study/baseline/log\.simplefoam
+
+F1-Study/baseline/logs/
