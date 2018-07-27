@@ -1,0 +1,102 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (40 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (40 0 0);
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (40 0 0);
+    }
+    ground
+    {
+        //type            fixedValue;
+        //value           uniform (0 0 0);
+        type            symmetry;
+    }
+    "side.*"
+    {
+        type            symmetry;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    BW
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FLOOR
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    FLWh
+    {
+        type rotatingWallVelocity;
+        origin (0.000001 0 0.317198);
+        axis (0 -1 0);
+        omega 120.24;  // 40/0.332662
+        value uniform (0 0 0);
+    }
+    FRWh
+    {
+        type rotatingWallVelocity;
+        origin (0.000001 0 0.317198);
+        axis (0 -1 0);
+        omega 120.24;  // 40/0.332662
+        value uniform (0 0 0);
+    }
+    FW
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    RLWh
+    {
+        type rotatingWallVelocity;
+        origin (3.703 0 0.315641);
+        axis (0 -1 0);
+        omega 120.24;  // 40/0.332662
+        value uniform (0 0 0);
+    }
+    RRWh
+    {
+        type rotatingWallVelocity;
+        origin (3.703 0 0.315641);
+        axis (0 -1 0);
+        omega 120.24;  // 40/0.332662
+        value uniform (0 0 0);
+    }
+    RW
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+}
+
+// ************************************************************************* //

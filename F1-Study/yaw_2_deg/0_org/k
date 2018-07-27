@@ -1,0 +1,90 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0.1666;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.1666;
+        value           uniform 0.1666;
+    }
+    ground
+    {
+        //type            kqRWallFunction;
+        //value           uniform 0.1666;
+        type            symmetry;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    "side.*"
+    {
+        type            symmetry;
+    }
+    BW
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    FLOOR
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    FLWh
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    FRWh
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    FW
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    RLWh
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    RRWh
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+    RW
+    {
+        type            fixedValue;
+        value           uniform 0.1666;
+    }
+}
+
+// ************************************************************************* //
