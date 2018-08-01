@@ -38,6 +38,11 @@ boundaryField
         type            zeroGradient;
     }
 
+    frontAndBack
+    {
+        type            symmetry;
+    }
+
 }
 
 // ************************************************************************* //

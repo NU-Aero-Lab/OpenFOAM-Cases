@@ -37,6 +37,11 @@ boundaryField
         type            nutkWallFunction;
         value           uniform 0;
     }
+    
+    frontAndBack
+    {
+        type            symmetry;
+    }
 
 }
 

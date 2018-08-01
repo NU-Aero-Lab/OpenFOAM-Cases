@@ -41,6 +41,11 @@ boundaryField
         value           uniform $epsilonInlet;
     }
 
+    frontAndBack
+    {
+        type            symmetry;
+    }
+
 }
 
 // ************************************************************************* //

@@ -39,6 +39,11 @@ boundaryField
         type            noSlip;
     }
 
+    frontAndBack
+    {
+        type            symmetry;
+    }
+
 }
 
 // ************************************************************************* //

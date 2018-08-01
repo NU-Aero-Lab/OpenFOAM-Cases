@@ -41,6 +41,11 @@ boundaryField
         value           uniform $kInlet;
     }
 
+    frontAndBack
+    {
+        type            symmetry;
+    }
+
 }
 
 // ************************************************************************* //

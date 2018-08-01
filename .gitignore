@@ -21,3 +21,5 @@
 F1-Study/baseline/log\.simplefoam
 
 **/logs/
+
+*.simpleFoam
