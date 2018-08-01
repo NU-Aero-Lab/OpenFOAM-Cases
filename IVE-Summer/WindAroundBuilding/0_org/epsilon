@@ -9,25 +9,38 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      surfaceFeatureExtractDict;
+    class       volScalarField;
+    object      epsilon;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Building.stl
-{
-    // How to obtain raw features (extractFromFile || extractFromSurface)
-    extractionMethod    extractFromSurface;
+epsilonInlet  0.03; // Cmu^0.75 * k^1.5 / L ; L =10
 
-    extractFromSurfaceCoeffs
+dimensions      [0 2 -3 0 0 0 0];
+
+internalField   uniform $epsilonInlet;
+
+boundaryField
+{
+    inlet
     {
-        // Mark edges whose adjacent surface normals are at an angle less
-        // than includedAngle as features
-        // - 0  : selects no edges
-        // - 180: selects all edges
-        includedAngle   150;
+        type            fixedValue;
+        value           uniform $epsilonInlet;
     }
-    writeObj    yes;
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform $epsilonInlet;
+        value           uniform $epsilonInlet;
+    }
+
+    wall
+    {
+        type            epsilonWallFunction;
+        value           uniform $epsilonInlet;
+    }
+
 }
 
 // ************************************************************************* //

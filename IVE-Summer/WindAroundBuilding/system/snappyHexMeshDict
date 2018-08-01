@@ -14,18 +14,16 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
-
 castellatedMesh on;
 snap            on;
 addLayers       off;
 
 geometry
 {
-    buildings
+    Building
     {
         type triSurfaceMesh;
-        file "buildings.obj";
+        file "Building.stl";
     }
 
     refinementBox
@@ -40,12 +38,12 @@ castellatedMeshControls
 {
     features
     (
-      { file  "buildings.eMesh"; level 1; }
+      { file  "Building.eMesh"; level 1; }
     );
 
     refinementSurfaces
     {
-        buildings
+        Building
         {
             level (3 3);
             patchInfo { type wall; }
@@ -74,7 +72,7 @@ addLayersControls
 {
     layers
     {
-        "CAD.*"
+        "Building"
         {
             nSurfaceLayers 2;
         }

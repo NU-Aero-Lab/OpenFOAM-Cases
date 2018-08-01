@@ -16,13 +16,13 @@ FoamFile
 
 backgroundMesh
 {
-    xMin   -20; // L = 350
-    xMax   330;
+    xMin  -100; // L = 350
+    xMax   100;
     yMin   -50; // L = 280
-    yMax   230;
+    yMax    50;
     zMin     0;
-    zMax   140;
-    xCells  25;
+    zMax   200;
+    xCells  35;
     yCells  20;
     zCells  10;
 }
