@@ -10,46 +10,21 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      controlDict;
+    object      createPatchDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
+pointSync false;
 
-startFrom       latestTime;
-
-//startTime       0;
-
-stopAt          endTime;
-//stopAt          writeNow;
-
-endTime         1000.0;
-
-deltaT          1;
-
-writeControl    timeStep;
-writeInterval   50;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
-
-functions
-{
-    #include "streamLines"
-    #include "cuttingPlane"
-    #include "yPlus"
-    #include "forceCoeffs"
-}
+// Patches to create.
+patches
+(
+    {
+        name top;
+        patchInfo { type symmetry; }
+        constructFrom patches;
+        patches (top1);
+    }
+);
 
 // ************************************************************************* //

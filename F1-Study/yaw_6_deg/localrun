@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Initialise case
+decomposePar -force
+mpirun -np 6 renumberMesh -parallel -overwrite
+mpirun -np 6 potentialFoam -initialiseUBCs -noFunctionObjects -parallel
+
+# Run the case
+mpirun -np 6 simpleFoam -parallel > log.simplefoam 
+
+

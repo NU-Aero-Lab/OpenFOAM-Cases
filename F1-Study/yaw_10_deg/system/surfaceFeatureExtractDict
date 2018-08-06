@@ -10,46 +10,24 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      controlDict;
+    object      surfaceFeatureExtractDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
-
-startFrom       latestTime;
-
-//startTime       0;
-
-stopAt          endTime;
-//stopAt          writeNow;
-
-endTime         1000.0;
-
-deltaT          1;
-
-writeControl    timeStep;
-writeInterval   50;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
-
-functions
+ASSY.stl
 {
-    #include "streamLines"
-    #include "cuttingPlane"
-    #include "yPlus"
-    #include "forceCoeffs"
+    // How to obtain raw features (extractFromFile || extractFromSurface)
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+    writeObj    yes;
 }
 
 // ************************************************************************* //

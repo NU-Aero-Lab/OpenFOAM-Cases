@@ -2,8 +2,8 @@
 
 ##########################
 #SBATCH --time 48:00:00 #specify a time limit for the job.
-#SBATCH --job-name=NM_OF
-#SBATCH --output nm_of-%j.out
+#SBATCH --job-name=NM_OF10
+#SBATCH --output nm_of10-%j.out
 #SBATCH --partition=48hour
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=28

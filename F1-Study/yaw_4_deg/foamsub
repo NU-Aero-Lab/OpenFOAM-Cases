@@ -2,10 +2,10 @@
 
 ##########################
 #SBATCH --time 48:00:00 #specify a time limit for the job.
-#SBATCH --job-name=NM_OF
+#SBATCH --job-name=NM_OF4
 #SBATCH --output nm_of-%j.out
 #SBATCH --partition=48hour
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=28
 #SBATCH --exclusive
 #SBATCH --mail-user=nick.d.martin@northumbria.ac.uk
@@ -18,6 +18,10 @@ cores=28                              # number of cores
 sed -i "/numberOfSubdomains/c\\numberOfSubdomains    $(($nodes*$cores));" system/decomposeParDict
 
 # Run the solution (parallel)
+echo "SOLVING..."
 decomposePar -force
+mpirun -np $(($nodes*$cores)) renumberMesh -parallel -overwrite
+mpirun -np $(($nodes*$cores)) potentialFoam -initialiseUBCs -noFunctionObjects -parallel
 mpirun -np $(($nodes*$cores)) simpleFoam -parallel
+
 reconstructPar -latestTime

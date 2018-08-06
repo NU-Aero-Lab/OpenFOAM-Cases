@@ -1,0 +1,37 @@
+#!/bin/bash
+
+##########################
+#SBATCH --time 24:00:00 #specify a time limit for the job.
+#SBATCH --job-name=NM_MESH
+#SBATCH --output nm_mesh-%j.out
+#SBATCH --partition=48hour
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=28
+#SBATCH --exclusive
+#SBATCH --mail-user=nick.d.martin@northumbria.ac.uk
+#SBATCH --mail-type=ALL
+##########################
+
+nodes=$SLURM_JOB_NUM_NODES            # Number of nodes
+cores=28                              # number of cores
+
+sed -i "/numberOfSubdomains/c\\numberOfSubdomains    $(($nodes*$cores));" system/decomposeParDict
+
+# Decompose solution (serial)
+echo "DECOMPOSE MESH WITH decomposePar..."
+decomposePar -force
+
+# Mesh the case (parallel)
+echo "MESH WITH SHM..."
+mpirun -np $(($nodes*$cores)) snappyHexMesh -parallel -dict system/snappyHexMeshDict -overwrite
+mpirun -np $(($nodes*$cores)) checkMesh -parallel 
+reconstructParMesh -constant
+
+# rename patches
+createPatch -dict system/createPatchDict0
+createPatch -dict system/createPatchDict1
+
+rm -rf constant/polyMesh
+cp -r 2/polyMesh constant
+rm -rf 0 1 2
+cp -r 0_org 0

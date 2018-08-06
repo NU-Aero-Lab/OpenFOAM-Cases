@@ -1,0 +1,66 @@
+#To clean the directory, this is optional
+foamCleanTutorials
+foamCleanPolyMesh
+
+#Extract and convert edges
+surfaceFeatureExtract -dict system/surfaceFeatureExtractDict
+
+#To generate the mesh and check mesh quality. In serial:
+blockMesh
+snappyHexMesh -dict system/snappyHexMeshDict -overwrite
+checkMesh
+
+#Translate domain
+#transformPoints -translate '(X Y Z)'
+
+#To rename patches
+createPatch -dict system/createPatchDict0 -overwrite
+createPatch -dict system/createPatchDict1 -overwrite
+
+#To run in serial:
+rm -rf 0
+cp -r 0_org 0
+
+#renumberMesh -overwrite
+potentialFoam -initialiseUBCs -noFunctionObjects
+simpleFoam > log.simplefoam | tail -f log.simplefoam 
+
+#To do the postprocessing in serial:
+simpleFoam -postProcess -func yPlus -latestTime
+simpleFoam -postProcess -func wallShearStress -latestTime
+postProcess -func Q -latestTime
+postProcess -func vorticity -latestTime
+postProcess -func sample -latestTime 
+
+#######################
+
+#To generate the mesh and check mesh quality. In parallel:
+blockMesh
+decomposePar
+mpirun -np 6 snappyHexMesh -parallel -dict system/snappyHexMeshDict -overwrite 
+mpirun -np 6 checkMesh -parallel 
+reconstructParMesh -constant
+
+#To transfer the desired mesh to constant/polyMesh
+rm -rf constant/polyMesh/
+cp -r 3/polyMesh/ constant/
+foamListTimes -rm
+
+
+#To run in parallel
+rm -rf 0
+cp -r 0_org 0
+
+decomposePar -force
+mpirun -np 6 renumberMesh -parallel -overwrite
+mpirun -np 6 potentialFoam -initialiseUBCs -noFunctionObjects -parallel
+mpirun -np 6 simpleFoam -parallel > log.simplefoam | tail -f log.simplefoam 
+
+yPlusRAS -latestTime
+Q -latestTime
+wallShearStress -latestTime
+vorticity -latestTime
+postProcess -func sample -latestTime 
+
+
+
