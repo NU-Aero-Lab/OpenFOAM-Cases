@@ -17,7 +17,10 @@
 *.eMesh
 *.obj
 *.out
-
-F1-Study/baseline/log\.simplefoam
-
+*.simplefoam
 **/logs/
+
+!/IVE-Summer/WindAroundBuilding/constant/triSurface/*
+/IVE-Summer/WindAroundBuilding/constant/triSurface/Building.stl
+
+IVE-Summer/WindAroundBuilding/constant/triSurface/Building\.eMesh

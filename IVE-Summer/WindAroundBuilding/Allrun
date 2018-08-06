@@ -1,0 +1,9 @@
+#!/bin/sh
+
+surfaceFeatureExtract
+blockMesh
+snappyHexMesh -overwrite
+cp -rf 0_org 0
+simpleFoam > log.simpleFoam
+simpleFoam -postProcess -func wallShearStress
+
