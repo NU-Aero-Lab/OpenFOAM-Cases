@@ -1,0 +1,130 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Factor for scaling
+convertToMeters 1;
+
+// Declaring variables using macro syntax notation which can later be used with $variablename
+//
+xmin -3;
+xmax  5;
+ymin -2;
+ymax  2;
+zmin  0;
+zmax  2;
+
+// Cell spacing
+deltax 0.1;
+deltay 0.1;
+deltaz 0.1;
+
+// Calculate the length by using the above variables and assign to new variables
+lx #calc "($xmax) - ($xmin)";
+ly #calc "($ymax) - ($ymin)";
+lz #calc "($zmax) - ($zmin)";
+
+// Calculate the number of cells with above criteria and round
+xcells #calc "round($lx/$deltax)";
+ycells #calc "round($ly/$deltay)";
+zcells #calc "round($lz/$deltaz)";
+
+// The 8 vertex co-ordinates of the 3D block (geometry) starting from 0 vertex number
+// Check Appendix B in Tutorial 2 for a visual representation of vertices
+vertices
+(
+    ($xmin  $ymin  $zmin) // 0 vertex
+    ($xmax  $ymin  $zmin) // 1st vertex
+    ($xmax  $ymax  $zmin) // 2nd vertex
+    ($xmin  $ymax  $zmin) // 3rd vertex
+    ($xmin  $ymin  $zmax) // 4th vertex
+    ($xmax  $ymin  $zmax) // 5th vertex
+    ($xmax  $ymax  $zmax) // 6th vertex
+    ($xmin  $ymax  $zmax) // 7th vertex (8th counting 0)
+);
+
+// Defines the block topology
+blocks
+(
+// Hexahedral (hex) block with vertices in sequential order, number of cells in each direction
+// ($xcells, etc.) and stretching (simpleGrading) of the mesh (in this case uniform)
+    hex (0 1 2 3 4 5 6 7) ($xcells $ycells $zcells) simpleGrading (1 1 1)
+);
+
+// To be used to define edges joining vertices that are not straight. It is assumed straight by
+//default (leave blank)
+edges
+(
+);
+
+// Define the patches for boundary conditions
+boundary
+(
+    side2  // patch name
+    {
+        type symmetry;  // patch type (refer to Tutorial 2 blockMesh sections for details
+        faces
+        (
+            (3 7 6 2) // list of vertices of the surface patch (face)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    side1
+    {
+        type symmetry;
+        faces
+        (
+            (0 1 5 4)
+        );
+    }
+    top
+    {
+        type symmetry;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+    ground
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+);
+
+// Incase of multiple blocks() (defined earlier), patches to merge
+mergePatchPairs 
+(
+);
+
+// ************************************************************************* //
